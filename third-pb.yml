@@ -1,0 +1,23 @@
+- hosts: ubuntu
+  become: yes
+  tasks: 
+
+    - name: install java1.8
+      apt:
+        name: openjdk-8-jdk
+        state: installed
+
+    - name: install maven
+      apt:
+        name: maven
+        state: present
+
+    - name: install git
+      apt:
+        name: git
+        state: latest
+
+    - name: cloning vprifile
+      git:
+        repo: https://github.com/kommarer/VProfile.git
+        dest: /home/priyatham/project
