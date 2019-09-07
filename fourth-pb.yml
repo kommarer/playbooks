@@ -1,0 +1,24 @@
+- hosts: centos
+  become: yes
+  tasks: 
+
+    - name: install java1.8
+      yum:
+        name: java-1.8.0-openjdk.x86_64
+        state: installed
+
+    - name: maven installation
+      yum:
+        name: maven
+        state: latest
+        update_cache: yes
+
+    - name: install git
+      yum:
+        name: git
+        state: present
+
+    - name: cloning vprofile
+      git:
+        repo: https://github.com/kommarer/VProfile.git
+        dest: /home/priyatham/project
