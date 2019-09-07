@@ -21,3 +21,7 @@
       git:
         repo: https://github.com/kommarer/VProfile.git
         dest: /home/priyatham/project
+
+    - name: getting artifact
+      shell: mvn -f /home/priyatham/project package 
+        
