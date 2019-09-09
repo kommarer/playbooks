@@ -21,4 +21,29 @@
     - name: cloning vprofile
       git:
         repo: https://github.com/kommarer/VProfile.git
-        dest: /home/priyatham/project
+        dest: /home/priyatham/vprofile
+
+    - name: getting artifact
+      shell: mvn -f /home/priyatham/vprofile/pom.xml package
+      tags: build
+
+    - name: download tomcat
+      get_url:
+         url: http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.45/bin/apache-tomcat-8.5.45.tar.gz
+         dest: /home/priyatham
+
+    - name: unzip tar file
+      unarchive:
+         src: /home/priyatham/apache-tomcat-8.5.45.tar.gz
+         dest: /home/priyatham
+         remote_src: yes
+
+    - name: copy war file
+      copy:
+        src: /home/priyatham/vprofile/target/vprofile-v1.war
+        dest: /home/priyatham/apache-tomcat-8.5.45/webapps
+        remote_src: yes
+
+    - name: start tomcat
+      shell: nohup /home/priyatham/apache-tomcat-8.5.45/bin/startup.sh &  
+
