@@ -24,4 +24,17 @@
         name: jenkins
         state: present
         update_cache: yes
-      
+
+    - name: change port number
+      replace: 
+        path: /etc/sysconfig/jenkins
+        regexp: JENKINS_PORT=8090
+        replace: JENKINS_PORT=9090
+
+    - name: start jenkins
+      service:
+        name: jenkins
+        state: restarted
+        enabled: yes
+
+   
