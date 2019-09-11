@@ -27,4 +27,14 @@
         state: present
         update_cache: yes
 
+    - name: change port number
+      replace: 
+        path: /etc/default/jenkins
+        regexp: HTTP_PORT=8090
+        replace: HTTP_PORT=9090
+      
 
+    - name: restart jenkins
+      service:
+        name: jenkins
+        state: restarted
