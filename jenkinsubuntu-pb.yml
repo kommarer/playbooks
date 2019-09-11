@@ -38,3 +38,12 @@
       service:
         name: jenkins
         state: restarted
+
+    - name: copy key
+      shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+      register: password
+
+    - name: display key
+      debug:
+        var: password
+
