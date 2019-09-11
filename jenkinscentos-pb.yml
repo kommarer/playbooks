@@ -37,4 +37,10 @@
         state: restarted
         enabled: yes
 
-   
+    - name: copy key
+      shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+      register: password
+
+   - name: show key
+     debug:
+       var: password   
